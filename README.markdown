@@ -4,11 +4,11 @@
 
 # Features
 
-* Conveniently delete words (and other text objects) in Insert mode
+* Conveniently delete words (and other text objects) while in Insert mode
 * Current paragraph reformatted automatically when Vim’s autoformat is
   active
-* Useful when composing/editing text in code comments and with
-  writing-oriented plug-ins like _pencil_
+* Useful with writing plug-ins like [vim-pencil][pn] and when composing
+  code comments
 * Specify your own command, with the operation, text object, and motion
 * Pure Vimscript with no dependencies
 
@@ -18,10 +18,10 @@ Install using your favorite Vim package manager.
 
 ## Configuration
 
-You must define the behavior of this plugin in your `.vimrc`. No keys are
+You must define the behavior of this plugin in your `.vimrc` – no keys are
 mapped by default.
 
-For example, to re-map the `Control-E` key to delete to the end of the
+For example, to re-map the `Ctrl-E` key to delete to the end of the
 next _word_:
 
 ```vim
@@ -32,7 +32,7 @@ where `de` deletes text forward to the end of the next _word_, preserving
 any trailing space. (As an alternative, `dw` would consume the trailing
 space.)
 
-By default, `Control-W` will delete the _word_ before the cursor in Insert
+By default, `Ctrl-W` will delete the _word_ before the cursor in Insert
 mode. You can change this behavior to work with _WORDS_ instead:
 
 ```vim
@@ -51,12 +51,22 @@ inoremap <expr> <C-y> wordchipper#chipWith('d)')
 This will use Vim’s default sentence text object, or an alternative like
 [vim-textobj-sentence][ts] if installed.
 
-You can also specify a buffer-local mapping, such as which would be
-initialized for the Markdown file type. For more details, see:
+
+### Buffer-local mappings
+
+You can also specify buffer-local mappings, such as initialized only for
+the Markdown and text file types...
 
 ```vim
-:help map-<buffer>
+augroup wordchipper
+  autocmd!
+  autocmd FileType markdown,mkd,text
+      \   inoremap <buffer> <expr> <C-e> wordchipper#chipWith('de')
+      \ | inoremap <buffer> <expr> <C-w> wordchipper#chipWith('dB')
+      \ | inoremap <buffer> <expr> <C-t> wordchipper#chipWith('d)')
+augroup END
 ```
+
 
 ### Word motions
 
@@ -82,8 +92,7 @@ documentation:
 
 ## Recommended settings
 
-In your `.vimrc`, ensure backspace can consume whatever text is in its
-way:
+In your `.vimrc`, ensure backspace can consume whatever is in its way:
 
 ```vim
 set backspace=indent,eol,start
@@ -112,10 +121,10 @@ let g:wordchipper#autoformat = 0    " default is 1
 
 If you find this plugin useful, check out these others by [@reedes][re]:
 
+* [vim-pencil][pn] - Rethinking Vim as a tool for writers
 * [vim-colors-pencil][cp] - color scheme for Vim inspired by IA Writer
 * [vim-lexical][lx] - building on Vim’s spell-check and thesaurus/dictionary completion
 * [vim-litecorrect][lc] - lightweight auto-correction for Vim
-* [vim-pencil][pn] - Rethinking Vim as a tool for writers
 * [vim-textobj-quote][qu] - extends Vim to support typographic (‘curly’) quotes
 * [vim-textobj-sentence][ts] - improving on Vim's native sentence motion command
 * [vim-thematic][th] - modify Vim’s appearance to suit your task and environment
