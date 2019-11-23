@@ -1,25 +1,47 @@
 # vim-wordchipper
 
-> Power tool for shredding text in Insert mode
+> Power tool for shredding text in *Insert* mode
 
 # Features
 
-* Conveniently delete words (and other text objects) while in Insert mode
+* Conveniently delete words (and other text objects) while in *Insert* mode
 * Current paragraph reformatted automatically when Vim’s autoformat is
   active
-* Useful with writing plug-ins like [vim-pencil][pn] and when composing
+* Useful with writing plugins like [vim-pencil][pn] and when composing
   code comments
-* Specify your own command, with the operation, text object, and motion
+* Specify your own operation, text object, and motion
 * Pure Vimscript with no dependencies
+
+# Introduction
+
+Though Vim’s *Insert* mode is typically used for entering new text, it
+nevertheless offers a limited capability to delete existing text:
+
+| Key                | Description
+| ------------------ | -------------------------------------------------
+| `<BS> or <C-h>`    | Delete the character before the cursor
+| `<Del>`            | Delete the character under the cursor
+| `<C-w>`            | Delete the word before the cursor
+| `<C-u>`            | Delete all characters before the cursor in the current line
+| `<C-o> D`          | Delete the characters under the cursor until the end of the line
+
+For more details, see:
+
+```vim
+:help ins-special-keys
+```
+
+This plugin can extend that capability, such as to delete the word _after_
+the cursor.
 
 ## Installation
 
-Install using your favorite Vim package manager.
+Install this plugin using your favorite Vim package manager.
 
 ## Configuration
 
-You must define the behavior of this plugin in your `.vimrc` – no keys are
-mapped by default.
+No keys are mapped by default. You must define the behavior of this plugin
+in your `.vimrc`.
 
 For example, to re-map the `Ctrl-E` key to delete to the end of the
 next _word_:
@@ -32,8 +54,9 @@ where `de` deletes text forward to the end of the next _word_, preserving
 any trailing space. (As an alternative, `dw` would consume the trailing
 space.)
 
-By default, `Ctrl-W` will delete the _word_ before the cursor in Insert
-mode. You can change this behavior to work with _WORDS_ instead:
+By default, `Ctrl-W` will delete the _word_ before the cursor. You can
+change this behavior to work with _WORDS_ instead (i.e., including
+punctuation):
 
 ```vim
 inoremap <expr> <C-w> wordchipper#chipWith('dB')
@@ -63,10 +86,9 @@ augroup wordchipper
   autocmd FileType markdown,mkd,text
       \   inoremap <buffer> <expr> <C-e> wordchipper#chipWith('de')
       \ | inoremap <buffer> <expr> <C-w> wordchipper#chipWith('dB')
-      \ | inoremap <buffer> <expr> <C-t> wordchipper#chipWith('d)')
+      \ | inoremap <buffer> <expr> <C-y> wordchipper#chipWith('d)')
 augroup END
 ```
-
 
 ### Word motions
 
@@ -106,7 +128,7 @@ For more details, see:
 
 ## Prevent autoformat
 
-If Vim’s autoformat is active during the Insert, such as when using
+If Vim’s autoformat is active during the *Insert*, such as when using
 _HardPencil_ mode in the _pencil_ plugin, _wordchipper_ will force
 a format to the end of the paragraph when invoked.
 
@@ -115,7 +137,6 @@ You can disable this behavior in your `.vimrc` with
 ```vim
 let g:wordchipper#autoformat = 0    " default is 1
 ```
-
 
 ## See also
 
