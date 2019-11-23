@@ -5,17 +5,17 @@
 # Features
 
 * Conveniently delete words (and other text objects) while in *Insert* mode
-* Current paragraph reformatted automatically when Vim’s autoformat is
-  active
+* Automatically forces a format on current paragraph when Vim’s autoformat
+  is active
 * Useful with writing plugins like [vim-pencil][pn] and when composing
   code comments
-* Specify your own operation, text object, and motion
 * Pure Vimscript with no dependencies
 
 # Introduction
 
 Though Vim’s *Insert* mode is typically used for entering new text, it
-nevertheless offers a limited capability to delete existing text:
+nevertheless offers a limited capability to delete existing text with
+single keystrokes:
 
 | Key                | Description
 | ------------------ | -------------------------------------------------
@@ -23,7 +23,10 @@ nevertheless offers a limited capability to delete existing text:
 | `<Del>`            | Delete the character under the cursor
 | `<C-w>`            | Delete the word before the cursor
 | `<C-u>`            | Delete all characters before the cursor in the current line
-| `<C-o> D`          | Delete the characters under the cursor until the end of the line
+
+In addition, with `Ctrl-o` you can execute a command, which will then
+return to *Insert* mode. For example `<C-o>dw` can delete the word after
+the cursor.
 
 For more details, see:
 
@@ -32,7 +35,7 @@ For more details, see:
 ```
 
 This plugin can extend that capability, such as to delete the word _after_
-the cursor.
+the cursor with a single keystroke.
 
 ## Installation
 
@@ -43,8 +46,8 @@ Install this plugin using your favorite Vim package manager.
 No keys are mapped by default. You must define the behavior of this plugin
 in your `.vimrc`.
 
-For example, to re-map the `Ctrl-E` key to delete to the end of the
-next _word_:
+For example, to re-map the `Ctrl-E` key to delete to the end of the next
+_word_:
 
 ```vim
 inoremap <expr> <C-e> wordchipper#chipWith('de')
@@ -130,9 +133,11 @@ For more details, see:
 
 If Vim’s autoformat is active during the *Insert*, such as when using
 _HardPencil_ mode in the _pencil_ plugin, _wordchipper_ will force
-a format to the end of the paragraph when invoked.
+a format to the end of the paragraph when invoked. (Without _wordchipper_
+there would be no force of a format when deleting text, despite autoformat
+being active.)
 
-You can disable this behavior in your `.vimrc` with
+You can disable the forced format in your `.vimrc` with
 
 ```vim
 let g:wordchipper#autoformat = 0    " default is 1
