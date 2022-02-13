@@ -1,7 +1,7 @@
 " ============================================================================
 " File:        plugin/wordchipper.vim
 " Description: vim-wordchipper plugin
-" Maintainer:  Reed Esau <github.com/reedes>
+" Maintainer:  preservim <https://github.com/preservim>
 " Created:     November 22, 2019
 " License:     The MIT License (MIT)
 " ============================================================================
