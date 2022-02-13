@@ -145,7 +145,8 @@ let g:wordchipper#autoformat = 0    " default is 1
 
 ## See also
 
-If you find this plugin useful, check out these others by [@reedes][re]:
+If you find this plugin useful, check out these others originally by
+[@reedes][re]:
 
 * [vim-pencil][pn] - Rethinking Vim as a tool for writers
 * [vim-colors-pencil][cp] - color scheme for Vim inspired by IA Writer
@@ -157,19 +158,21 @@ If you find this plugin useful, check out these others by [@reedes][re]:
 * [vim-wordy][wo] - uncovering usage problems in writing
 * [vim-wheel][wh] - screen anchored cursor movement
 
-[re]: http://github.com/reedes
-[cp]: http://github.com/reedes/vim-colors-pencil
-[pn]: http://github.com/reedes/vim-pencil
-[lx]: http://github.com/reedes/vim-lexical
-[lc]: http://github.com/reedes/vim-litecorrect
-[qu]: http://github.com/reedes/vim-textobj-quote
-[ts]: http://github.com/reedes/vim-textobj-sentence
-[th]: http://github.com/reedes/vim-thematic
-[wo]: http://github.com/reedes/vim-wordy
-[wh]: http://github.com/reedes/vim-wheel
+[re]: https://github.com/reedes
+[cp]: https://github.com/preservim/vim-colors-pencil
+[pn]: https://github.com/preservim/vim-pencil
+[lx]: https://github.com/preservim/vim-lexical
+[lc]: https://github.com/preservim/vim-litecorrect
+[qu]: https://github.com/preservim/vim-textobj-quote
+[ts]: https://github.com/preservim/vim-textobj-sentence
+[th]: https://github.com/preservim/vim-thematic
+[wo]: https://github.com/preservim/vim-wordy
+[wh]: https://github.com/preservim/vim-wheel
 
 ## Future development
 
 If you’ve spotted a problem or have an idea on improving this plugin,
-please post it to the github project issue page.
+please post it to the [GitHub project issue page][issues].
+
+[issues]: https://github.com/preservim/vim-wordchipper/issues
 
